@@ -28,6 +28,20 @@ def define_Sparam(lis):
     k = 0
 
     # Brings the plots together for the CSV
+    # The CST file structure is
+    # Frequency        S1,1
+    # F1               v1
+    # F2               v2
+    # Frequency        S2,1
+    # F1               v3
+    # F2               v4
+    # but we need it to be like this
+    # Frequency,S11,Frequency,S21
+    # F1,v1,F1,v3
+    # F2,v2,F2,v4
+    # this 'for' loop detects whether we are reading
+    # the results from a floquet port (SZmin(1),Zmax(1)) - converts to s11-te or tm, depending on the index
+    # or from a waveguide/discrete port (S1,1) - converts to s11, or s12, or s22 or s21
     for i in range(len(lis)):
 
         if 'SZmin(1),Zmax(1)' in lis[i]:
