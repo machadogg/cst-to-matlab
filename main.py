@@ -1,7 +1,10 @@
 from functions import *
 import re
 
-with open("test2.txt", 'r') as rf:
+rfn = input("Enter the name for the file to be converted: ")
+wfw = input("Enter the output file name: ")
+
+with open("test4.txt", 'r') as rf:
 
     text = rf.read()
     liss = re.split("\n", text)
@@ -10,9 +13,9 @@ with open("test2.txt", 'r') as rf:
     printdeb()
     liss = define_Sparam(liss)
 
-    adjusting(liss)
-
-    with open("write.txt", "w") as wf:
+    with open("write3.csv", "w") as wf:
 
         for item in liss:
             wf.write(item + '\n')
+
+print(len(liss))
