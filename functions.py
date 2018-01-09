@@ -52,7 +52,7 @@ def define_Sparam(lis):
                 lis[i] = 'f,s21-te'
             k += 1
 
-        if 'SZmax(1),Zmax(1)' in lis[i]:
+        elif 'SZmax(1),Zmax(1)' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s11-te'
                 lis[i] = ''
@@ -60,7 +60,7 @@ def define_Sparam(lis):
                 lis[i] = 'f,s11-te'
             k += 1
 
-        if 'SZmax(1),Zmin(1)' in lis[i]:
+        elif 'SZmax(1),Zmin(1)' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s12-te'
                 lis[i] = ''
@@ -68,7 +68,7 @@ def define_Sparam(lis):
                 lis[i] = 'f,s12-te'
             k += 1
 
-        if 'SZmin(1),Zmin(1)' in lis[i]:
+        elif 'SZmin(1),Zmin(1)' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s22-te'
                 lis[i] = ''
@@ -76,7 +76,7 @@ def define_Sparam(lis):
                 lis[i] = 'f,s22-te'
             k += 1
 
-        if 'SZmin(2),Zmax(2)' in lis[i]:
+        elif 'SZmin(2),Zmax(2)' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s21-tm'
                 lis[i] = ''
@@ -84,7 +84,7 @@ def define_Sparam(lis):
                 lis[i] = 'f,s21-tm'
             k += 1
 
-        if 'SZmax(2),Zmax(2)' in lis[i]:
+        elif 'SZmax(2),Zmax(2)' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s11-tm'
                 lis[i] = ''
@@ -92,7 +92,7 @@ def define_Sparam(lis):
                 lis[i] = 'f,s11-tm'
             k += 1
 
-        if 'SZmax(2),Zmin(2)' in lis[i]:
+        elif 'SZmax(2),Zmin(2)' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s12-tm'
                 lis[i] = ''
@@ -100,7 +100,7 @@ def define_Sparam(lis):
                 lis[i] = 'f,s12-tm'
             k += 1
 
-        if 'SZmin(2),Zmin(2)' in lis[i]:
+        elif 'SZmin(2),Zmin(2)' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s22-tm'
                 lis[i] = ''
@@ -108,33 +108,70 @@ def define_Sparam(lis):
                 lis[i] = 'f,s22-tm'
             k += 1
 
-        if 'S1,1' in lis[i]:
+        elif 'S1,1' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s11'
                 lis[i] = ''
             else:
                 lis[i] = 'f,s11'
             k += 1
-        if 'S2,1' in lis[i]:
+        elif 'S2,1' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s21'
                 lis[i] = ''
             else:
                 lis[i] = 'f,s21'
             k += 1
-        if 'S1,2' in lis[i]:
+        elif 'S1,2' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s12'
                 lis[i] = ''
             else:
                 lis[i] = 'f,s12'
             k += 1
-        if 'S2,2' in lis[i]:
+        elif 'S2,2' in lis[i]:
             if i > 0:
                 lis[0] = lis[0] + ',f,s22'
                 lis[i] = ''
             else:
                 lis[i] = 'f,s22'
+            k += 1
+        elif 'Z1,1' in lis[i]:
+            if i > 0:
+                lis[0] = lis[0] + ',f,z11'
+                lis[i] = ''
+            else:
+                lis[i] = 'f,z11'
+            k += 1
+        elif 'Z2,1' in lis[i]:
+            if i > 0:
+                lis[0] = lis[0] + ',f,z21'
+                lis[i] = ''
+            else:
+                lis[i] = 'f,z21'
+            k += 1
+        elif 'Z1,2' in lis[i]:
+            if i > 0:
+                lis[0] = lis[0] + ',f,z12'
+                lis[i] = ''
+            else:
+                lis[i] = 'f,z12'
+            k += 1
+        elif 'Z2,2' in lis[i]:
+            if i > 0:
+                lis[0] = lis[0] + ',f,z22'
+                lis[i] = ''
+            else:
+                lis[i] = 'f,z22'
+            k += 1
+        elif 'F' in lis[i]: #If it doesn't match the patterns, generates generic name from CST
+            ln = lis[i].split()
+            param = ln[3].replace(',', '')
+            if i > 0:
+                lis[0] = lis[0] + ',f,' + param
+                lis[i] = ''
+            else:
+                lis[i] = ',f,' + param
             k += 1
 
         # Eliminate the white spaces and puts a comma for the CSV
@@ -142,7 +179,7 @@ def define_Sparam(lis):
             lis[i] = ','.join(lis[i].split())
 
     # lis = list(filter(None, lis))
-
+   # print(type(lis[0]))
     # Clears the double blank lines, leaving one. We will need it later!
     for j in range(k):
         if i > 1:
@@ -156,7 +193,7 @@ def define_Sparam(lis):
     del lis[len(lis) - 1]
 
     lis = adjusting(lis, k - 1)
-    print("k = ", k)
+    #print("k = ", k)
     return lis
 
 
@@ -176,7 +213,7 @@ def adjusting(flis, r):
                 list_empties.append(n)
     list_empties.append(len(flis))
 
-    print(list_empties)
+    # print(list_empties)
 
     # Creates a list with the number of data to be appended
 
@@ -184,7 +221,7 @@ def adjusting(flis, r):
         if n > 0:
             soma.append(list_empties[n] - list_empties[n - 1])
 
-    print(soma)
+    # print(soma)
 
     for n in range(r):
 
