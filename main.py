@@ -33,7 +33,7 @@ try:
         print(rfn + ' converted successfuly \n\n')
 
 except EnvironmentError:
-    print("\n\nError opening the file. Does it exist? \nRemember: DO NOT write the file extension \nexemple: test, and not 'text.txt'\n\n")
+    print("\n\nError opening the file. Does " + rfn + " exist? \nRemember: DO NOT write the file extension \nexemple: test, and not 'text.txt'\n\n")
 
 
 os.system('pause')
